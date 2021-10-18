@@ -5,9 +5,10 @@ RUN apt-get update && apt-get install -y wget perl-tk
 #Get TL from CTAN
 RUN cd /tmp &&\
   wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz &&\
-  tar -xzf install-tl-unx.tar.gz &&\
-  cd $(find . -maxdepth 1 -type d -name 'install-tl*')
+  tar -xzf install-tl-unx.tar.gz
 
-COPY texlive.profile .
+COPY texlive.profile /tmp/
 
-RUN ./install-tl -profile texlive.profile
+RUN $(find /tmp -maxdepth 1 -type d -name 'install-tl*')/install-tl -profile /tmp/texlive.profile
+
+CMD ["/bin/bash"]
