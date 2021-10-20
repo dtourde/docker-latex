@@ -1,6 +1,6 @@
 FROM ubuntu:21.04
 
-RUN apt-get update && apt-get install -y wget perl-tk
+RUN apt-get update && apt-get install -y wget perl-tk && rm -rf /var/lib/apt/lists/*
 
 #Get TL from CTAN
 RUN cd /tmp &&\
